@@ -117,8 +117,8 @@ function CalcularEfectividad(actualMoveType, pokemonType) {
 //Funcion que, utilizando el valor retornado por la Funcion de calcular  efectividad, calcula el daño que sera causado a el Pokemon
 //----------------------------------------------------------//----------------------------------------------------------//
 
-function CalcularDaño(ConvencionalAtk, IVAtk, actualPotence, ConvencionalDefense, efectivity) {
-    return (ConvencionalAtk + IVAtk + actualPotence - ConvencionalDefense) * efectivity
+function CalcularDaño(ConvencionalAtk, actualPotence, ConvencionalDefense, efectivity) {
+    return (ConvencionalAtk + actualPotence - ConvencionalDefense) * efectivity
 }
 
 //----------------------------------------------------------
@@ -181,6 +181,8 @@ function MensajeDeStat(pokemon, stataffected, TipodeEfectoenstat) {
 //==========================================================
 // Variables del cálculo de daño
 let efectivity;
+let daño;
+let mensajeuwu;
 
 // Variables del turno actual
 let primerAtacante;
@@ -195,13 +197,24 @@ let perdedor;
 
 // Control del combate
 let rounds = 0;
+let keyAffect;
+let basestat;
 
 //==========================================================
 //Objetos Pókemon
 //==========================================================
 
 let obj_pokemon = [
-    {
+    {   
+        iv: {
+            hp: azar(0, 31),
+            atk: azar(0, 31),
+            def: azar(0, 31),
+            spatk: azar(0, 31),
+            spdef: azar(0, 31),
+            speed: azar(0, 31)
+        },
+
         name: "Emboar",
         tipo1: "Fire",
         tipo2: "Fight",
@@ -211,6 +224,15 @@ let obj_pokemon = [
         spatk: 100,
         spdef: 65,
         speed: 65,
+
+        battlestats: {
+            hp: 1000,
+            atk: 123,
+            def: 65,
+            spatk: 100,
+            spdef: 65,
+            speed: 65,
+        },
         stage: 0, //Posiblemente innecesaria
         statStages: {
             //En aumento: 0 = 2/2 (sin cambios), 1 = 3/2, 2 = 4/2, 3 = 5/2, 4 = 6/2, 5 = 7/2, 6 = 8/2
@@ -220,15 +242,6 @@ let obj_pokemon = [
             spatkstage: 0,
             spdefstage: 0,
             speedstage: 0
-        },
-
-        iv: {
-            hp: azar(0, 31),
-            atk: azar(0, 31),
-            def: azar(0, 31),
-            spatk: azar(0, 31),
-            spdef: azar(0, 31),
-            speed: azar(0, 31)
         },
 
         movename: ["Envite Igneo", "A Bocajarro", "Terremoto", "Gruñido"],
@@ -240,7 +253,16 @@ let obj_pokemon = [
         stateffecttype: [null, null, null, "debuff"],
         whoaffect: [null, null, null, "rival"]
     },
-    {
+    {   
+        iv: {
+            hp: azar(0, 31),
+            atk: azar(0, 31),
+            def: azar(0, 31),
+            spatk: azar(0, 31),
+            spdef: azar(0, 31),
+            speed: azar(0, 31)
+        },
+
         name: "Samurott",
         tipo1: "Water",
         tipo2: null,
@@ -250,6 +272,14 @@ let obj_pokemon = [
         spatk: 108,
         spdef: 70,
         speed: 70,
+        battlestats: {
+            hp: 1000,
+            atk: 100,
+            def: 85,
+            spatk: 108,
+            spdef: 70,
+            speed: 70,
+        },
         stage: 0, //Posiblemente innecesaria
         statStages: {
             //En aumento: 0 = 2/2 (sin cambios), 1 = 3/2, 2 = 4/2, 3 = 5/2, 4 = 6/2, 5 = 7/2, 6 = 8/2
@@ -259,15 +289,6 @@ let obj_pokemon = [
             spatkstage: 0,
             spdefstage: 0,
             speedstage: 0
-        },
-
-        iv: {
-            hp: azar(0, 31),
-            atk: azar(0, 31),
-            def: azar(0, 31),
-            spatk: azar(0, 31),
-            spdef: azar(0, 31),
-            speed: azar(0, 31)
         },
 
         movename: ["Surf", "Rayo Hielo", "Pulso Umbrío", "Danza Espada"],
@@ -280,6 +301,14 @@ let obj_pokemon = [
         whoaffect: [null, null, null, "user"]
     },
     {
+        iv: {
+            hp: azar(0, 31),
+            atk: azar(0, 31),
+            def: azar(0, 31),
+            spatk: azar(0, 31),
+            spdef: azar(0, 31),
+            speed: azar(0, 31)
+        },
         name: "Servine",
         tipo1: "Grass",
         tipo2: null,
@@ -289,6 +318,14 @@ let obj_pokemon = [
         spatk: 60,
         spdef: 75,
         speed: 83,
+        battlestats: {
+            hp: 1000,
+            atk: 60,
+            def: 75,
+            spatk: 60,
+            spdef: 75,
+            speed: 83,
+        },
         stage: 0, //Posiblemente innecesaria
         statStages: {
             //En aumento: 0 = 2/2 (sin cambios), 1 = 3/2, 2 = 4/2, 3 = 5/2, 4 = 6/2, 5 = 7/2, 6 = 8/2
@@ -298,15 +335,6 @@ let obj_pokemon = [
             spatkstage: 0,
             spdefstage: 0,
             speedstage: 0
-        },
-
-        iv: {
-            hp: azar(0, 31),
-            atk: azar(0, 31),
-            def: azar(0, 31),
-            spatk: azar(0, 31),
-            spdef: azar(0, 31),
-            speed: azar(0, 31)
         },
 
         movename: ["Energibola", "Hoja Afilada", "Disparo Demora", "Golpe Aéreo"],
@@ -320,7 +348,15 @@ let obj_pokemon = [
     }
 ];
 
-
+//Solo quiero sumar las IV a la stat de batalla
+for (let i = 0; i<obj_pokemon.length; i++) {
+    obj_pokemon[i].battlestats.hp = obj_pokemon[i].battlestats.hp + obj_pokemon[i].iv.hp;
+    obj_pokemon[i].battlestats.atk = obj_pokemon[i].battlestats.atk + obj_pokemon[i].iv.atk;
+    obj_pokemon[i].battlestats.def = obj_pokemon[i].battlestats.def + obj_pokemon[i].iv.def;
+    obj_pokemon[i].battlestats.spatk = obj_pokemon[i].battlestats.spatk + obj_pokemon[i].iv.spatk;
+    obj_pokemon[i].battlestats.spdef = obj_pokemon[i].battlestats.spdef + obj_pokemon[i].iv.spdef;
+    obj_pokemon[i].battlestats.speed = obj_pokemon[i].battlestats.speed + obj_pokemon[i].iv.speed;
+    }
 //==========================================================
 //Inicio del Script. Reparto de Pókemon
 //==========================================================
@@ -352,7 +388,7 @@ console.log("===========================================")
 console.log("¡QUE INICIE EL COMABTE!");
 
 //Calcular quien es el primer atacante
-if (pokemonJugador.speed > pokemonPC.speed) {
+if (pokemonJugador.battlestats.speed > pokemonPC.battlestats.speed) {
     primerAtacante = pokemonJugador;
     segundoAtacante = pokemonPC;
 } else {
@@ -364,13 +400,13 @@ if (pokemonJugador.speed > pokemonPC.speed) {
 //==========================================================
 do {
     if (primerAtacante == pokemonJugador) {
-        if (pokemonPC.speed > pokemonJugador.speed) {
+        if (pokemonPC.battlestats.speed > pokemonJugador.battlestats.speed) {
             primerAtacante = pokemonPC;
             segundoAtacante = pokemonJugador;
         }
 
         if (segundoAtacante == pokemonJugador) {
-            if (pokemonPC.speed < pokemonJugador.speed) {
+            if (pokemonPC.battlestats.speed < pokemonJugador.battlestats.speed) {
                 primerAtacante = pokemonJugador;
                 segundoAtacante = pokemonPC;
             }
@@ -383,8 +419,8 @@ do {
     //------------------------------------------------------
     //Mostrar VIDA
     //------------------------------------------------------
-    console.log("HP de " + primerAtacante.name + ": " + primerAtacante.hp)
-    console.log("HP de " + segundoAtacante.name + ": " + segundoAtacante.hp)
+    console.log("HP de " + primerAtacante.name + ": " + primerAtacante.battlestats.hp)
+    console.log("HP de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.hp)
 
     //------------------------------------------------------
     //Mostrar el menu unicamente si le toca al jugador
@@ -425,9 +461,9 @@ do {
         //Calcular el daño. Define que datos se le dara segun la categoria
         //------------------------------------------------------
         if (primerAtacante.movecategory[atacanteSelect] == "Physical") {
-            daño = Math.floor(CalcularDaño(primerAtacante.atk, primerAtacante.iv.atk, primerAtacante.movepotence[atacanteSelect], segundoAtacante.def, efectivity));
+            daño = Math.floor(CalcularDaño(primerAtacante.battlestats.atk, primerAtacante.movepotence[atacanteSelect], segundoAtacante.battlestats.def, efectivity));
         } else {
-            daño = Math.floor(CalcularDaño(primerAtacante.spatk, primerAtacante.iv.spatk, primerAtacante.movepotence[atacanteSelect], segundoAtacante.spdef, efectivity));
+            daño = Math.floor(CalcularDaño(primerAtacante.battlestats.spatk, primerAtacante.movepotence[atacanteSelect], segundoAtacante.battlestats.spdef, efectivity));
         }
 
         //------------------------------------------------------
@@ -438,13 +474,13 @@ do {
         //------------------------------------------------------
         //Quitar vida al jugador
         //------------------------------------------------------
-        segundoAtacante.hp = segundoAtacante.hp - daño;
+        segundoAtacante.battlestats.hp = segundoAtacante.battlestats.hp - daño;
 
         //------------------------------------------------------
         //Arreglar estetica de vida, si la vida es menor a 0, se volvera 0
         //------------------------------------------------------
-        if (segundoAtacante.hp < 0) {
-            segundoAtacante.hp = 0;
+        if (segundoAtacante.battlestats.hp < 0) {
+            segundoAtacante.battlestats.hp = 0;
         }
 
         //------------------------------------------------------
@@ -452,23 +488,35 @@ do {
         //------------------------------------------------------
         console.log(MensajedeEfectividad(efectivity));
 
-        console.log("HP de " + segundoAtacante.name + ": " + segundoAtacante.hp)
+        console.log("HP de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.hp)
 
         //------------------------------------------------------
         //Definir quien gano
         //------------------------------------------------------
-        if (segundoAtacante.hp == 0) {
+        if (segundoAtacante.battlestats.hp == 0) {
             ganador = primerAtacante.name;
             perdedor = segundoAtacante.name;
             break;
         }
     } else {
         if (primerAtacante.whoaffect[atacanteSelect] == "rival"){
+            keyAffect = primerAtacante.stataffect[atacanteSelect]; //Funciona para obtener la llave para acceder a la stat enemiga
+            segundoAtacante.statStages[keyAffect+"stage"] = segundoAtacante.statStages[keyAffect+"stage"]+1
+            segundoAtacante.battlestats[keyAffect] = segundoAtacante[keyAffect] * 2/(2+segundoAtacante.statStages[keyAffect+"stage"]);
+
             mensajeuwu = MensajeDeStat(segundoAtacante.name, primerAtacante.stataffect[atacanteSelect], primerAtacante.stateffecttype[atacanteSelect]);
+            console.log(mensajeuwu);
+
         } else {
+            keyAffect = primerAtacante.stataffect[atacanteSelect]; //Funciona para obtener la llave para acceder a la stat usuaria
+            primerAtacante.statStages[keyAffect+"stage"] = primerAtacante.statStages[keyAffect+"stage"]+1
+            primerAtacante.battlestats[keyAffect] = primerAtacante[keyAffect] * (2+primerAtacante.statStages[keyAffect+"stage"])/2;
+            
+
             mensajeuwu = MensajeDeStat(primerAtacante.name, primerAtacante.stataffect[atacanteSelect], primerAtacante.stateffecttype[atacanteSelect]);
+            console.log(mensajeuwu);
         }
-        console.log(mensajeuwu);
+        
 
     }
 
@@ -519,9 +567,9 @@ do {
         //Calcular el daño. Define que datos se le dara segun la categoria
         //------------------------------------------------------
         if (segundoAtacante.movecategory[segundoSelect] == "Physical") {
-            daño = Math.floor(CalcularDaño(segundoAtacante.atk, segundoAtacante.iv.atk, segundoAtacante.movepotence[segundoSelect], primerAtacante.def, efectivity));
+            daño = Math.floor(CalcularDaño(segundoAtacante.battlestats.atk, segundoAtacante.movepotence[segundoSelect], primerAtacante.battlestats.def, efectivity));
         } else {
-            daño = Math.floor(CalcularDaño(segundoAtacante.spatk, segundoAtacante.iv.spatk, segundoAtacante.movepotence[segundoSelect], primerAtacante.spdef, efectivity));
+            daño = Math.floor(CalcularDaño(segundoAtacante.battlestats.spatk, segundoAtacante.movepotence[segundoSelect], primerAtacante.battlestats.spdef, efectivity));
         }
 
         //------------------------------------------------------
@@ -532,13 +580,13 @@ do {
         //------------------------------------------------------
         //Quitar vida al jugador
         //------------------------------------------------------
-        primerAtacante.hp = primerAtacante.hp - daño;
+        primerAtacante.battlestats.hp = primerAtacante.battlestats.hp - daño;
 
         //------------------------------------------------------
         //Arreglar estetica de vida, si la vida es menor a 0, se volvera 0
         //------------------------------------------------------
-        if (primerAtacante.hp < 0) {
-            primerAtacante.hp = 0;
+        if (primerAtacante.battlestats.hp < 0) {
+            primerAtacante.battlestats.hp = 0;
         }
 
         //------------------------------------------------------
@@ -546,27 +594,37 @@ do {
         //------------------------------------------------------
         console.log(MensajedeEfectividad(efectivity));
 
-        console.log("HP de " + primerAtacante.name + ": " + primerAtacante.hp)
+        console.log("HP de " + primerAtacante.name + ": " + primerAtacante.battlestats.hp)
 
         //------------------------------------------------------
         //Definir quien gano
         //------------------------------------------------------
-        if (primerAtacante.hp == 0) {
+        if (primerAtacante.battlestats.hp == 0) {
             ganador = segundoAtacante.name;
             perdedor = primerAtacante.name;
             break;
         };
     } else {
-        if (segundoAtacante.whoaffect[segundoSelect] == "rival") {
-            mensajeuwu = MensajeDeStat(primerAtacante.name, segundoAtacante.stataffect[segundoSelect], segundoAtacante.stateffecttype[segundoSelect]);
-        
+        if (segundoAtacante.whoaffect[segundoSelect] == "rival"){
+            keyAffect = segundoAtacante.stataffect[segundoSelect]; //Funciona para obtener la llave para acceder a la stat enemiga
+            primerAtacante.statStages[keyAffect+"stage"] = primerAtacante.statStages[keyAffect+"stage"]+1
+            primerAtacante.battlestats[keyAffect] = primerAtacante[keyAffect] * 2/(2+primerAtacante.statStages[keyAffect+"stage"]);
+
+            mensajeuwu = MensajeDeStat(primerAtacante.name, segundoAtacante.stataffect[segundoAtacante], segundoAtacante.stateffecttype[segundoSelect]);
+            console.log(mensajeuwu);
+
         } else {
-            mensajeuwu = MensajeDeStat(segundoAtacante.name, segundoAtacante.stataffect[segundoSelect], segundoAtacante.stateffecttype[segundoSelect]);
+            keyAffect = segundoAtacante.stataffect[segundoSelect]; //Funciona para obtener la llave para acceder a la stat usuaria
+            segundoAtacante.statStages[keyAffect+"stage"] = segundoAtacante.statStages[keyAffect+"stage"]+1
+            segundoAtacante.battlestats[keyAffect] = segundoAtacante[keyAffect] * (2+segundoAtacante.statStages[keyAffect+"stage"])/2;
+            
+
+            mensajeuwu = MensajeDeStat(segundoAtacante.name, segundoAtacante.stataffect[segundoAtacante], segundoAtacante.stateffecttype[segundoSelect]);
+            console.log(mensajeuwu);
         }
-        console.log(mensajeuwu);
     };
 
-} while (primerAtacante.hp > 0 && segundoAtacante.hp > 0);
+} while (primerAtacante.battlestats.hp > 0 && segundoAtacante.battlestats.hp > 0);
 
 console.log("===========================================")
 
