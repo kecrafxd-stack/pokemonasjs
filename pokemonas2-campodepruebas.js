@@ -187,18 +187,12 @@ function MensajeDeStat(pokemon, stataffected, TipodeEfectoenstat) {
 function StateMovement(atacante, selectordeAtacante, defensor) {
     if (atacante.whoaffect[selectordeAtacante] == "rival"){
             let keyAffect = atacante.stataffect[selectordeAtacante]; //Funciona para obtener la llave para acceder a la stat enemiga
-            defensor.statStages[keyAffect+"stage"] =+ 1;
-            return defensor.battlestats[keyAffect] = defensor[keyAffect] * 2/(2+defensor.statStages[keyAffect+"stage"]);
-
-            return MensajeDeStat(defensor.name, atacante.stataffect[selectordeAtacante], atacante.stateffecttype[selectordeAtacante]);
-
+            defensor.statStages[keyAffect+"stage"] =+ atacante.movestageDelta[selectordeAtacante];
+            return defensor.battlestats[keyAffect] = defensor[keyAffect] * 2/(2 + atacante.movestageDelta[selectordeAtacante]);
         } else {
             keyAffect = atacante.stataffect[selectordeAtacante]; //Funciona para obtener la llave para acceder a la stat usuaria
-            atacante.statStages[keyAffect+"stage"] = atacante.statStages[keyAffect+"stage"]+1
-            atacante.battlestats[keyAffect] = atacante[keyAffect] * (2+atacante.statStages[keyAffect+"stage"])/2;
-            
-
-            return MensajeDeStat(atacante.name, atacante.stataffect[selectordeAtacante], atacante.stateffecttype[selectordeAtacante]);
+            atacante.statStages[keyAffect+"stage"] =+ atacante.movestageDelta[selectordeAtacante]
+            return atacante.battlestats[keyAffect] = atacante[keyAffect] * (2+atacante.movestageDelta[selectordeAtacante])/2;
         }
 }
 
@@ -376,12 +370,12 @@ let obj_pokemon = [
 
 //Solo quiero sumar las IV a la stat de batalla
 for (let i = 0; i<obj_pokemon.length; i++) {
-    obj_pokemon[i].hp += obj_pokemon[i].iv.hp; obj_pokemon[i].battlestats.hp = obj_pokemon[i].hp
-    obj_pokemon[i].atk += obj_pokemon[i].iv.atk; obj_pokemon[i].battlestats.atk = obj_pokemon[i].atk
-    obj_pokemon[i].def += obj_pokemon[i].iv.def; obj_pokemon[i].battlestats.def = obj_pokemon[i].def
-    obj_pokemon[i].spatk += obj_pokemon[i].iv.spatk; obj_pokemon[i].battlestats.spatk = obj_pokemon[i].spatk
-    obj_pokemon[i].spdef += obj_pokemon[i].iv.spdef; obj_pokemon[i].battlestats.spdef = obj_pokemon[i].spdef
-    obj_pokemon[i].speed += obj_pokemon[i].iv.speed; obj_pokemon[i].battlestats.speed = obj_pokemon[i].speed
+    obj_pokemon[i].battlestats.hp = obj_pokemon[i].battlestats.hp + obj_pokemon[i].iv.hp;
+    obj_pokemon[i].battlestats.atk = obj_pokemon[i].battlestats.atk + obj_pokemon[i].iv.atk;
+    obj_pokemon[i].battlestats.def = obj_pokemon[i].battlestats.def + obj_pokemon[i].iv.def;
+    obj_pokemon[i].battlestats.spatk = obj_pokemon[i].battlestats.spatk + obj_pokemon[i].iv.spatk;
+    obj_pokemon[i].battlestats.spdef = obj_pokemon[i].battlestats.spdef + obj_pokemon[i].iv.spdef;
+    obj_pokemon[i].battlestats.speed = obj_pokemon[i].battlestats.speed + obj_pokemon[i].iv.speed;
     }
 //==========================================================
 //Inicio del Script. Reparto de Pókemon
@@ -447,7 +441,8 @@ do {
     //------------------------------------------------------
     console.log("HP de " + primerAtacante.name + ": " + primerAtacante.battlestats.hp)
     console.log("HP de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.hp)
-        //DEBUG
+    //------------------------------------------------------
+    //DEBUG
     //------------------------------------------------------
     console.log("---------------------------------------")
     console.log("ATK de " + primerAtacante.name + ": " + primerAtacante.battlestats.atk)
@@ -460,6 +455,7 @@ do {
     //------------------------------------------------------
     //DEBUG
     //------------------------------------------------------
+
 
     //------------------------------------------------------
     //Mostrar el menu unicamente si le toca al jugador
@@ -539,14 +535,12 @@ do {
         }
     } else {
         if (primerAtacante.whoaffect[atacanteSelect] == "rival"){
-            keyAffect = primerAtacante.stataffect[atacanteSelect]; //Funciona para obtener la llave para acceder a la stat enemiga
-            segundoAtacante.statStages[keyAffect+"stage"] =+ primerAtacante.movestageDelta[atacanteSelect]
-            segundoAtacante.battlestats[keyAffect] = segundoAtacante[keyAffect] * 2/(2+segundoAtacante.statStages[keyAffect+"stage"]);
+            StateMovement(primerAtacante, atacanteSelect, segundoAtacante);
 
             mensajeuwu = MensajeDeStat(segundoAtacante.name, primerAtacante.stataffect[atacanteSelect], primerAtacante.stateffecttype[atacanteSelect]);
             console.log(mensajeuwu);
-
-                //DEBUG
+            //------------------------------------------------------
+    //DEBUG
     //------------------------------------------------------
     console.log("---------------------------------------")
     console.log("ATK de " + primerAtacante.name + ": " + primerAtacante.battlestats.atk)
@@ -561,15 +555,12 @@ do {
     //------------------------------------------------------
 
         } else {
-            keyAffect = primerAtacante.stataffect[atacanteSelect]; //Funciona para obtener la llave para acceder a la stat usuaria
-            primerAtacante.statStages[keyAffect+"stage"] =+ primerAtacante.movestageDelta[atacanteSelect]
-            primerAtacante.battlestats[keyAffect] = primerAtacante[keyAffect] * (2+primerAtacante.statStages[keyAffect+"stage"])/2;
+            StateMovement(primerAtacante, atacanteSelect, segundoAtacante);
             
-
             mensajeuwu = MensajeDeStat(primerAtacante.name, primerAtacante.stataffect[atacanteSelect], primerAtacante.stateffecttype[atacanteSelect]);
             console.log(mensajeuwu);
-
-                //DEBUG
+            //------------------------------------------------------
+    //DEBUG
     //------------------------------------------------------
     console.log("---------------------------------------")
     console.log("ATK de " + primerAtacante.name + ": " + primerAtacante.battlestats.atk)
@@ -673,14 +664,12 @@ do {
         };
     } else {
         if (segundoAtacante.whoaffect[segundoSelect] == "rival"){
-            keyAffect = segundoAtacante.stataffect[segundoSelect]; //Funciona para obtener la llave para acceder a la stat enemiga
-            primerAtacante.statStages[keyAffect+"stage"] =+ segundoAtacante.movestageDelta[segundoSelect];
-            primerAtacante.battlestats[keyAffect] = primerAtacante[keyAffect] * 2/(2+primerAtacante.statStages[keyAffect+"stage"]);
+            StateMovement(segundoAtacante, segundoSelect, primerAtacante);
 
             mensajeuwu = MensajeDeStat(primerAtacante.name, segundoAtacante.stataffect[segundoSelect], segundoAtacante.stateffecttype[segundoSelect]);
             console.log(mensajeuwu);
-
-                //DEBUG
+            //------------------------------------------------------
+    //DEBUG
     //------------------------------------------------------
     console.log("---------------------------------------")
     console.log("ATK de " + primerAtacante.name + ": " + primerAtacante.battlestats.atk)
@@ -695,15 +684,12 @@ do {
     //------------------------------------------------------
 
         } else {
-            keyAffect = segundoAtacante.stataffect[segundoSelect]; //Funciona para obtener la llave para acceder a la stat usuaria
-            segundoAtacante.statStages[keyAffect+"stage"] =+ segundoAtacante.movestageDelta[segundoSelect]
-            segundoAtacante.battlestats[keyAffect] = segundoAtacante[keyAffect] * (2+segundoAtacante.statStages[keyAffect+"stage"])/2;
+            StateMovement(segundoAtacante, segundoSelect, primerAtacante);
             
-
             mensajeuwu = MensajeDeStat(segundoAtacante.name, segundoAtacante.stataffect[segundoSelect], segundoAtacante.stateffecttype[segundoSelect]);
             console.log(mensajeuwu);
-
-                //DEBUG
+            //------------------------------------------------------
+    //DEBUG
     //------------------------------------------------------
     console.log("---------------------------------------")
     console.log("ATK de " + primerAtacante.name + ": " + primerAtacante.battlestats.atk)
