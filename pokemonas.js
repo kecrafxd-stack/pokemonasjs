@@ -184,7 +184,7 @@ function MensajeDeStat(pokemon, stataffected, TipodeEfectoenstat) {
 //----------------------------------------------------------
 //Funcion encargada de calcular el efecto del movimiento de estado
 //----------------------------------------------------------
-function StateMovement(atacante, selectordeAtacante, defensor) {
+function StateMovement(atacante, selectordeAtacante, defensor) { //SIN UTILIZAR
     if (atacante.whoaffect[selectordeAtacante] == "rival"){
             let keyAffect = atacante.stataffect[selectordeAtacante]; //Funciona para obtener la llave para acceder a la stat enemiga
             defensor.statStages[keyAffect+"stage"] =+ 1;
@@ -394,9 +394,9 @@ for (let i = 0; i < obj_pokemon.length; i++) {
 }
 
 console.log("(User selecciona)"); //Usuario pendejo
-let userSelect = azar(0, 2);
+let userSelect = azar(0,2);
 
-let pokemonJugador = obj_pokemon[userSelect]
+let pokemonJugador = obj_pokemon[userSelect];
 
 console.log("===========================================")
 
@@ -456,6 +456,20 @@ do {
     console.log("---------------------------------------")
     console.log("SPEED de " + primerAtacante.name + ": " + primerAtacante.battlestats.speed)
     console.log("SPEED de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.speed)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + primerAtacante.name)
+    console.log("Stage atk: " + primerAtacante.statStages.atkstage)
+    console.log("Stage def: " + primerAtacante.statStages.defstage)
+    console.log("Stage spatk: " + primerAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + primerAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + primerAtacante.statStages.speedstage)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + segundoAtacante.name)
+    console.log("Stage atk: " + segundoAtacante.statStages.atkstage)
+    console.log("Stage def: " + segundoAtacante.statStages.defstage)
+    console.log("Stage spatk: " + segundoAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + segundoAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + segundoAtacante.statStages.speedstage)
     console.log("---------------------------------------")
     //------------------------------------------------------
     //DEBUG
@@ -540,7 +554,7 @@ do {
     } else {
         if (primerAtacante.whoaffect[atacanteSelect] == "rival"){
             keyAffect = primerAtacante.stataffect[atacanteSelect]; //Funciona para obtener la llave para acceder a la stat enemiga
-            segundoAtacante.statStages[keyAffect+"stage"] =+ primerAtacante.movestageDelta[atacanteSelect]
+            segundoAtacante.statStages[keyAffect+"stage"] += primerAtacante.movestageDelta[atacanteSelect];
             segundoAtacante.battlestats[keyAffect] = segundoAtacante[keyAffect] * 2/(2+segundoAtacante.statStages[keyAffect+"stage"]);
 
             mensajeuwu = MensajeDeStat(segundoAtacante.name, primerAtacante.stataffect[atacanteSelect], primerAtacante.stateffecttype[atacanteSelect]);
@@ -556,13 +570,27 @@ do {
     console.log("SPEED de " + primerAtacante.name + ": " + primerAtacante.battlestats.speed)
     console.log("SPEED de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.speed)
     console.log("---------------------------------------")
+    console.log("Etapas de " + primerAtacante.name)
+    console.log("Stage atk: " + primerAtacante.statStages.atkstage)
+    console.log("Stage def: " + primerAtacante.statStages.defstage)
+    console.log("Stage spatk: " + primerAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + primerAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + primerAtacante.statStages.speedstage)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + segundoAtacante.name)
+    console.log("Stage atk: " + segundoAtacante.statStages.atkstage)
+    console.log("Stage def: " + segundoAtacante.statStages.defstage)
+    console.log("Stage spatk: " + segundoAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + segundoAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + segundoAtacante.statStages.speedstage)
+    console.log("---------------------------------------")
     //------------------------------------------------------
     //DEBUG
     //------------------------------------------------------
 
         } else {
             keyAffect = primerAtacante.stataffect[atacanteSelect]; //Funciona para obtener la llave para acceder a la stat usuaria
-            primerAtacante.statStages[keyAffect+"stage"] =+ primerAtacante.movestageDelta[atacanteSelect]
+            primerAtacante.statStages[keyAffect+"stage"] += primerAtacante.movestageDelta[atacanteSelect]
             primerAtacante.battlestats[keyAffect] = primerAtacante[keyAffect] * (2+primerAtacante.statStages[keyAffect+"stage"])/2;
             
 
@@ -578,6 +606,20 @@ do {
     console.log("---------------------------------------")
     console.log("SPEED de " + primerAtacante.name + ": " + primerAtacante.battlestats.speed)
     console.log("SPEED de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.speed)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + primerAtacante.name)
+    console.log("Stage atk: " + primerAtacante.statStages.atkstage)
+    console.log("Stage def: " + primerAtacante.statStages.defstage)
+    console.log("Stage spatk: " + primerAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + primerAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + primerAtacante.statStages.speedstage)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + segundoAtacante.name)
+    console.log("Stage atk: " + segundoAtacante.statStages.atkstage)
+    console.log("Stage def: " + segundoAtacante.statStages.defstage)
+    console.log("Stage spatk: " + segundoAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + segundoAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + segundoAtacante.statStages.speedstage)
     console.log("---------------------------------------")
     //------------------------------------------------------
     //DEBUG
@@ -674,7 +716,7 @@ do {
     } else {
         if (segundoAtacante.whoaffect[segundoSelect] == "rival"){
             keyAffect = segundoAtacante.stataffect[segundoSelect]; //Funciona para obtener la llave para acceder a la stat enemiga
-            primerAtacante.statStages[keyAffect+"stage"] =+ segundoAtacante.movestageDelta[segundoSelect];
+            primerAtacante.statStages[keyAffect+"stage"] += segundoAtacante.movestageDelta[segundoSelect];
             primerAtacante.battlestats[keyAffect] = primerAtacante[keyAffect] * 2/(2+primerAtacante.statStages[keyAffect+"stage"]);
 
             mensajeuwu = MensajeDeStat(primerAtacante.name, segundoAtacante.stataffect[segundoSelect], segundoAtacante.stateffecttype[segundoSelect]);
@@ -690,13 +732,27 @@ do {
     console.log("SPEED de " + primerAtacante.name + ": " + primerAtacante.battlestats.speed)
     console.log("SPEED de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.speed)
     console.log("---------------------------------------")
+    console.log("Etapas de " + primerAtacante.name)
+    console.log("Stage atk: " + primerAtacante.statStages.atkstage)
+    console.log("Stage def: " + primerAtacante.statStages.defstage)
+    console.log("Stage spatk: " + primerAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + primerAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + primerAtacante.statStages.speedstage)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + segundoAtacante.name)
+    console.log("Stage atk: " + segundoAtacante.statStages.atkstage)
+    console.log("Stage def: " + segundoAtacante.statStages.defstage)
+    console.log("Stage spatk: " + segundoAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + segundoAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + segundoAtacante.statStages.speedstage)
+    console.log("---------------------------------------")
     //------------------------------------------------------
     //DEBUG
     //------------------------------------------------------
 
         } else {
             keyAffect = segundoAtacante.stataffect[segundoSelect]; //Funciona para obtener la llave para acceder a la stat usuaria
-            segundoAtacante.statStages[keyAffect+"stage"] =+ segundoAtacante.movestageDelta[segundoSelect]
+            segundoAtacante.statStages[keyAffect+"stage"] += segundoAtacante.movestageDelta[segundoSelect]
             segundoAtacante.battlestats[keyAffect] = segundoAtacante[keyAffect] * (2+segundoAtacante.statStages[keyAffect+"stage"])/2;
             
 
@@ -712,6 +768,20 @@ do {
     console.log("---------------------------------------")
     console.log("SPEED de " + primerAtacante.name + ": " + primerAtacante.battlestats.speed)
     console.log("SPEED de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.speed)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + primerAtacante.name)
+    console.log("Stage atk: " + primerAtacante.statStages.atkstage)
+    console.log("Stage def: " + primerAtacante.statStages.defstage)
+    console.log("Stage spatk: " + primerAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + primerAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + primerAtacante.statStages.speedstage)
+    console.log("---------------------------------------")
+    console.log("Etapas de " + segundoAtacante.name)
+    console.log("Stage atk: " + segundoAtacante.statStages.atkstage)
+    console.log("Stage def: " + segundoAtacante.statStages.defstage)
+    console.log("Stage spatk: " + segundoAtacante.statStages.spatkstage)
+    console.log("Stage spdef: " + segundoAtacante.statStages.spdefstage)
+    console.log("Stage speed: " + segundoAtacante.statStages.speedstage)
     console.log("---------------------------------------")
     //------------------------------------------------------
     //DEBUG
