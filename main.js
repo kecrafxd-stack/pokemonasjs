@@ -388,7 +388,7 @@ let obj_pokemon = [
             spdef: azar(0, 31),
             speed: azar(0, 31)
         },
-        name: "Servine",
+        name: "Serperior",
         tipo1: "Grass",
         tipo2: null,
         hp: 1000,

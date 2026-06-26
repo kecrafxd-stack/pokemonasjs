@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #222;
+    background-image: url("img/backstage.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+header {
+    /* Estructura */
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    z-index: 999;
+    top: 0;
+
+    /* Diseño */
+    color: #fff;
+    background-color: #181818;
+
+}
+
+.opacity {
+    width: 100%;
+    height: 91.2vh;
+    background-color: #00000071
+}
+.menu__poke-selection {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+.menu__pokemon-container{
+    display: flex;
+    gap: 20px;
+}
+.pokemon {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}

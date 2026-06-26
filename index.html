@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Poket Monster</title>
+    <title>Pocket Monster</title>
 </head>
+
 <body>
-    
-    <script src="pokemonas.js"></script>
+    <header>
+        <h1 class="header__title">BATTLE SIMULATOR</h1>
+        <span class="header__version">Ver. 0.7</span>
+    </header>
+
+    <main>
+        <div class="opacity">
+            <div class="menu__poke-selection">
+                <h2 class="menu__title">Selecciona tu Pókemon</h2>
+                <div class="menu__pokemon-container">
+                    <button class="pokemon__emboar pokemon" data-pokemon="0">
+                        <div class="pokemon__img-container"><img
+                                src="https://img.pokemondb.net/sprites/black-white/normal/emboar.png" alt="Emboar">
+                        </div>
+                        <div class="pokemon__content">
+                            <h2 class="pokemon__title">Emboar</h2>
+                        </div>
+                    </button>
+                    <button class="pokemon__samurott pokemon" data-pokemon="1">
+                        <div class="pokemon__img-container"><img
+                                src="https://img.pokemondb.net/sprites/black-white/normal/samurott.png" alt="Samurott">
+                        </div>
+                        <div class="pokemon__content">
+                            <h2 class="pokemon__title">Samurott</h2>
+                        </div>
+                    </button>
+                    <button class="pokemon__serperior pokemon" data-pokemon="2">
+                        <div class="pokemon__img-container"><img
+                                src="https://img.pokemondb.net/sprites/black-white/normal/serperior.png"
+                                alt="Serperior"></div>
+                        <div class="pokemon__content">
+                            <h2 class="pokemon__title">Serperior</h2>
+                        </div>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+    <script src="main.js"></script>
 </body>
+
 </html>
