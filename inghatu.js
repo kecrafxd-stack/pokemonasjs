@@ -222,7 +222,7 @@ function MensajeDeStat(atacante, atacanteSelect, defensor, stataffected, TipodeE
 //----------------------------------------------------------
 //Funcion encargada de calcular el efecto del movimiento de estado
 //----------------------------------------------------------
-function StateMovement(atacante, selectordeAtacante, defensor) { //SIN UTILIZAR
+function StateMovement(atacante, selectordeAtacante, defensor) {
     let keyAffect = atacante.stataffect[selectordeAtacante];
 
         if (atacante.whoaffect[selectordeAtacante] == "rival") {
@@ -254,6 +254,7 @@ function StateMovement(atacante, selectordeAtacante, defensor) { //SIN UTILIZAR
             }
         }
 }
+
 
 //==========================================================
 //Algunas variables
@@ -447,22 +448,11 @@ for (let i = 0; i < obj_pokemon.length; i++) {
 }
 
 console.log("(User selecciona)"); //Usuario pendejo
+let userSelect = azar(0, 2);
 
-let pkmSelected;
-let pokemonJugador;
-let pokemonButtons = document.querySelectorAll('.pokemon');
-let menuSeleccionPokemon = document.querySelector('.menu__poke-selection');
-for(let i = 0; i < pokemonButtons.length; i++){
+let pokemonJugador = obj_pokemon[userSelect];
 
-        pokemonButtons[i].addEventListener('click', () => {
-
-        if (menuSeleccionPokemon.classList.contains('menu__poke-selection')){
-            menuSeleccionPokemon.remove();
-        }
-        pkmSelected = pokemonButtons[i].dataset.pokemon;
-        pokemonJugador = obj_pokemon[pkmSelected];
-
-        console.log("===========================================")
+console.log("===========================================")
 
 console.log("Haz seleccionado a " + pokemonJugador.name);
 
@@ -475,7 +465,7 @@ console.log("===========================================")
 
 
 
-console.log("¡QUE INICIE EL COMABTE!");
+console.log("¡QUE INICIE EL COMBATE!");
 
 //Calcular quien es el primer atacante
 if (pokemonJugador.battlestats.speed > pokemonPC.battlestats.speed) {
@@ -489,6 +479,7 @@ if (pokemonJugador.battlestats.speed > pokemonPC.battlestats.speed) {
 //El bucle de turnos
 //==========================================================
 do {
+    //////////////////////////////////////////////////////////////////////////////
     if (primerAtacante == pokemonJugador) {
         if (pokemonPC.battlestats.speed > pokemonJugador.battlestats.speed) {
             primerAtacante = pokemonPC;
@@ -506,6 +497,7 @@ do {
     console.log("---------------------------------------")
     console.log("Ronda " + rounds);
     console.log("---------------------------------------")
+    
     //------------------------------------------------------
     //Mostrar VIDA
     //------------------------------------------------------
@@ -539,6 +531,8 @@ do {
     //DEBUG
     //------------------------------------------------------
 
+    //////////////////////////////////////////////////////////////////////////////
+    //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
     //------------------------------------------------------
     //Mostrar el menu unicamente si le toca al jugador
     //------------------------------------------------------
@@ -551,8 +545,8 @@ do {
         };
         //Usuario selecciona ataque:
         console.log("(User selecciona)"); //Usuario pendejo
-        pokemonAtacks = document
-        atacanteSelect = pokemonButtons;
+        userSelect = azar(0, 3);
+        atacanteSelect = userSelect;
 
         //Sistema muestra el ataque
         console.log(primerAtacante.name + " ha usado " + primerAtacante.movename[atacanteSelect]);
@@ -639,8 +633,8 @@ do {
         };
         //Usuario selecciona ataque:
         console.log("(User selecciona)"); //Usuario pendejo
-        pokemonButtons = azar(0, 3);
-        segundoSelect = pokemonButtons;
+        userSelect = azar(0, 3);
+        segundoSelect = userSelect;
 
         //Sistema muestra el ataque
         console.log(segundoAtacante.name + " ha usado " + segundoAtacante.movename[segundoSelect]);
@@ -710,33 +704,6 @@ do {
         mensajeuwu = MensajeDeStat(segundoAtacante, segundoSelect, primerAtacante.name, segundoAtacante.stataffect[segundoSelect], segundoAtacante.stateffecttype[segundoSelect])
         console.log(mensajeuwu);
 
-            //DEBUG
-            //------------------------------------------------------
-            console.log("---------------------------------------")
-            console.log("ATK de " + primerAtacante.name + ": " + primerAtacante.battlestats.atk)
-            console.log("ATK de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.atk)
-            console.log("---------------------------------------")
-            console.log("---------------------------------------")
-            console.log("SPEED de " + primerAtacante.name + ": " + primerAtacante.battlestats.speed)
-            console.log("SPEED de " + segundoAtacante.name + ": " + segundoAtacante.battlestats.speed)
-            console.log("---------------------------------------")
-            console.log("Etapas de " + primerAtacante.name)
-            console.log("Stage atk: " + primerAtacante.statStages.atkstage)
-            console.log("Stage def: " + primerAtacante.statStages.defstage)
-            console.log("Stage spatk: " + primerAtacante.statStages.spatkstage)
-            console.log("Stage spdef: " + primerAtacante.statStages.spdefstage)
-            console.log("Stage speed: " + primerAtacante.statStages.speedstage)
-            console.log("---------------------------------------")
-            console.log("Etapas de " + segundoAtacante.name)
-            console.log("Stage atk: " + segundoAtacante.statStages.atkstage)
-            console.log("Stage def: " + segundoAtacante.statStages.defstage)
-            console.log("Stage spatk: " + segundoAtacante.statStages.spatkstage)
-            console.log("Stage spdef: " + segundoAtacante.statStages.spdefstage)
-            console.log("Stage speed: " + segundoAtacante.statStages.speedstage)
-            console.log("---------------------------------------")
-            //------------------------------------------------------
-            //DEBUG
-            //------------------------------------------------------
     };
 
 } while (primerAtacante.battlestats.hp > 0 && segundoAtacante.battlestats.hp > 0);
@@ -746,8 +713,3 @@ console.log("===========================================")
 console.log(perdedor + " se ha debilitado. El ganador es " + ganador);
 
 console.log("===========================================")
-
-
-
-    })
-}   
