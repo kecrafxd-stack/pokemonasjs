@@ -13,6 +13,7 @@
         <h1 class="header__title">BATTLE SIMULATOR</h1>
         <span class="header__version">Ver-gacion. 0.???</span>
         <span>CHAMO</span>
+        <button class="ayuda">Check jugador select</button>
     </header>
 
     <main>
@@ -50,7 +51,7 @@
             </div>
         </div>
 
-        <div class="movimientos active">
+        <div class="movimientos desactive">
             <button class="move" data-move="0">...</button>
 
             <button class="move" data-move="1">...</button>
@@ -60,12 +61,12 @@
             <button class="move" data-move="3">...</button>
         </div>
 
-        <div class="console">
-            <p class="console__mensaje">...</p>
+        <div class="console desactive">
+            <span class="console__mensaje">...</span>
         </div>
     </main>
     <!-- Javascript yo te amaba porque me haces esto no me pegues javascript porfavor los niños estan viendo -->
-    <script src="newbattle.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>

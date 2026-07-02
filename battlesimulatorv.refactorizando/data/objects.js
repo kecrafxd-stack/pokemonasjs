@@ -1,8 +1,9 @@
+import { azar } from "../usable/azar.js";
 //==========================================================
 //Objetos Pókemon
 //==========================================================
 
-let obj_pokemon = [
+export let obj_pokemon = [
     {
         iv: {
             hp: azar(0, 31),

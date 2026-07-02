@@ -1,7 +1,7 @@
 //----------------------------------------------------------
 //Funcion para generar numeros al azar en un rango que yo diga
 //----------------------------------------------------------
-function azar(min, max) {
+export function azar(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
     //Del 0 al 2:
     //0.0-0.3 = 0

@@ -1,0 +1,14 @@
+for(let i = 0; i<buttons_pokemon.length; i++){
+    buttons_pokemon[i].addEventListener('click', () => {
+        jugador_selection = obj_pokemon[buttons_pokemon[i].dataset.pokemon]
+        console.log(jugador_selection)
+
+        //Mostrar otros menu
+        movimientos.classList.remove('desactive')
+        consola.classList.remove('desactive')
+
+        consola.children[0].textContent = "Seleccionaste a " + jugador_selection.name
+        
+        buttons_pokemon__container.remove()
+    })
+}
