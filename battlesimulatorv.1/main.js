@@ -222,7 +222,7 @@ function MensajeDeStat(atacante, atacanteSelect, defensor, stataffected, TipodeE
 //----------------------------------------------------------
 //Funcion encargada de calcular el efecto del movimiento de estado
 //----------------------------------------------------------
-function StateMovement(atacante, selectordeAtacante, defensor) { //SIN UTILIZAR
+function StateMovement(atacante, selectordeAtacante, defensor) {
     let keyAffect = atacante.stataffect[selectordeAtacante];
 
         if (atacante.whoaffect[selectordeAtacante] == "rival") {
