@@ -23,6 +23,9 @@ export let obj_pokemon = [
         spatk: 100,
         spdef: 65,
         speed: 65,
+        sprite1: "https://img.pokemondb.net/sprites/black-white-2/anim/back-normal/emboar.gif",
+        sprite2: "https://img.pokemondb.net/sprites/black-white-2/anim/normal/emboar.gif",
+
 
         battlestats: {
             hp: 1000,
@@ -71,6 +74,8 @@ export let obj_pokemon = [
         spatk: 108,
         spdef: 70,
         speed: 70,
+        sprite1: "https://img.pokemondb.net/sprites/black-white-2/anim/back-normal/samurott.gif",
+        sprite2: "https://img.pokemondb.net/sprites/black-white-2/anim/normal/samurott.gif",
         battlestats: {
             hp: 1000,
             atk: 100,
@@ -117,6 +122,8 @@ export let obj_pokemon = [
         spatk: 60,
         spdef: 75,
         speed: 83,
+        sprite1: "https://img.pokemondb.net/sprites/black-white-2/anim/back-normal/serperior.gif",
+        sprite2: "https://img.pokemondb.net/sprites/black-white-2/anim/normal/serperior.gif",
         battlestats: {
             hp: 1000,
             atk: 60,
