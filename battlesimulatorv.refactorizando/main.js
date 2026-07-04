@@ -5,6 +5,7 @@ import { obj_pokemon } from "./data/objects.js";
 import { seleccionarPokemon } from "./flujo/pokemonSelect.js";
 import { jugadorSelect } from "../status/selectionstate.js";
 import { azar } from "./usable/azar.js";
+import { pcSeleccion, pcSelect } from "./status/selectionstate.js";
 
 //================
 // FIN -IMPORTACIONES
@@ -21,15 +22,14 @@ let consola = document.querySelector('.console')
 let movimientos = document.querySelector('.movimientos');
 let moves = document.querySelectorAll('.move')
 let cosasocultas = document.querySelectorAll('.desactive')
-let pcSelect;
+pcSelect;
 
 seleccionarPokemon(buttons_pokemon, movimientos, consola, buttons_pokemon__container, moves);
 consola.addEventListener("click", () => {
     consola.classList.add('desactive');
 })
 
-pcSelect = obj_pokemon[azar(0,2)]
-console.log("El pokemon de pc select es " + pcSelect.name)
+
 //======================
 //BOTON DEBUGER
 //======================

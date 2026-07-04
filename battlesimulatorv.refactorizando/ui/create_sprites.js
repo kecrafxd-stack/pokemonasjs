@@ -1,4 +1,4 @@
-import { jugadorSelect } from "../status/selectionstate.js";
+import { jugadorSelect, pcSelect } from "../status/selectionstate.js";
 
 export function sprites_ui(){
     let battle = document.createElement('section');
@@ -8,5 +8,9 @@ battle.innerHTML = `<div class="jugador"><img class="jugadorimg" src="" alt=""><
 document.body.appendChild(battle);
 
 let sprite1 = document.querySelector('.jugadorimg');
-sprite1.src = jugadorSelect.sprite1
+sprite1.src = jugadorSelect.sprite1;
+
+let sprite2 = document.querySelector('.pcimg');
+sprite2.src = pcSelect.sprite2;
 }
+
