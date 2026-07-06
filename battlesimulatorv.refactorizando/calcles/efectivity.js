@@ -6,7 +6,7 @@
 //----------------------------------------------------------
 //Funcion encargada de calcular la efectividad de un ataque
 //----------------------------------------------------------
-function CalcularEfectividad(actualMoveType, pokemonType) {
+export function CalcularEfectividad(actualMoveType, pokemonType) {
     let efectividad = 1;
 
     switch (actualMoveType) {

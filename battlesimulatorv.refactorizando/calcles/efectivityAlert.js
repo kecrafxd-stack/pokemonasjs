@@ -2,7 +2,7 @@
 //Funcion encargada de enviar el mensaje segun la efectividad de un ataque
 //----------------------------------------------------------
 // --NOTA: Este script se puede reescribir como un switch
-function MensajedeEfectividad(efectivity) {
+export function MensajedeEfectividad(efectivity) {
     let mensaje;
     if (efectivity == 4) {
         return mensaje = "¡Es Hipereficaz!";
