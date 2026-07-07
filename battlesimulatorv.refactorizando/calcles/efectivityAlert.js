@@ -3,14 +3,13 @@
 //----------------------------------------------------------
 // --NOTA: Este script se puede reescribir como un switch
 export function MensajedeEfectividad(efectivity) {
-    let mensaje;
     if (efectivity == 4) {
-        return mensaje = "¡Es Hipereficaz!";
+        return "¡Es Hipereficaz!";
     } else if (efectivity == 2) {
-        return mensaje = "¡Es Superficaz!";
+        return "¡Es Superficaz!";
     } else if (efectivity == 0.5) {
-        return mensaje = "Es poco eficaz...";
+        return "Es poco eficaz...";
     } else {
-        return mensaje = "Es neutral"
+        return "Es neutral"
     }
 }

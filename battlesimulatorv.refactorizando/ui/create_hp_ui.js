@@ -1,6 +1,11 @@
 import { jugadorSelect, pcSelect } from "../status/selectionstate.js";
 
-export function HP(){
+export let jugador_hp_span = document.querySelector('.hp_jugador_span');
+export let hp_pc_span = document.querySelector('.hp_pc_span');
+export let hp_jugador_value = document.querySelector('.hp_jugador_value');
+export let hp_pc_value = document.querySelector('.hp_pc_value');
+
+export function HP() {
     let hp = document.createElement('section') //Primero creo la seccion
 
     //Le añado su respectiva clase
@@ -16,12 +21,14 @@ export function HP(){
                 <span class="hp_pc_value">...</span>
             </div>`;
 
-    document.body.appendChild(hp);    
-    
-    let jugador_hp_span = document.querySelector('.hp_jugador_span');
-    let hp_pc_span = document.querySelector('.hp_pc_span');
-    let hp_jugador_value = document.querySelector('.hp_jugador_value');
-    let hp_pc_value = document.querySelector('.hp_pc_value');
+    document.body.appendChild(hp);
+
+    jugador_hp_span = document.querySelector('.hp_jugador_span');
+    hp_pc_span = document.querySelector('.hp_pc_span');
+    hp_jugador_value = document.querySelector('.hp_jugador_value');
+    hp_pc_value = document.querySelector('.hp_pc_value');
+
+
 
     jugador_hp_span.textContent = "HP de " + jugadorSelect.name + ": ";
     hp_jugador_value.textContent = jugadorSelect.battlestats.hp + "/" + jugadorSelect.hp
@@ -29,4 +36,12 @@ export function HP(){
     hp_pc_span.textContent = "HP de " + pcSelect.name + ": ";
     hp_pc_value.textContent = pcSelect.battlestats.hp + "/" + pcSelect.hp
 
+}
+
+export function HPACTUAL() {
+    jugador_hp_span.textContent = "HP de " + jugadorSelect.name + ": ";
+    hp_jugador_value.textContent = jugadorSelect.battlestats.hp + "/" + jugadorSelect.hp
+
+    hp_pc_span.textContent = "HP de " + pcSelect.name + ": ";
+    hp_pc_value.textContent = pcSelect.battlestats.hp + "/" + pcSelect.hp
 }
