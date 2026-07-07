@@ -1,7 +1,7 @@
 //----------------------------------------------------------
 //Funcion encargada de calcular el efecto del movimiento de estado
 //----------------------------------------------------------
-function StateMovement(atacante, selectordeAtacante, defensor) {
+export function StateMovement(atacante, selectordeAtacante, defensor) {
     let keyAffect = atacante.stataffect[selectordeAtacante];
 
         if (atacante.whoaffect[selectordeAtacante] == "rival") {
