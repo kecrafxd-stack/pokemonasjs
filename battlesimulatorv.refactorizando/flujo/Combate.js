@@ -67,7 +67,7 @@ export function combate(moves, consola) {
                 switch (atacante.movecategory[atacanteSelect]) {
                     case "Physical":
 
-                        atkmensaje(atacante, consola, atacanteSelect)
+                        atkmensaje(atacante.name, consola, atacante.movename[atacanteSelect])
 
                         efectividad = CalcularEfectividad(atacante.movetype[atacanteSelect], defensor.tipo1)
 
@@ -89,7 +89,7 @@ export function combate(moves, consola) {
                         }, 2000);
 
                     case "Special":
-                        atkmensaje(atacante, consola, atacanteSelect)
+                        atkmensaje(atacante.name, consola, atacante.movename[atacanteSelect])
 
                         efectividad = CalcularEfectividad(atacante.movetype[atacanteSelect], defensor.tipo1)
 
@@ -111,6 +111,7 @@ export function combate(moves, consola) {
                         }, 2000);
 
                     case "State":
+                        atkmensaje(atacante.name, consola, atacante.movename[atacanteSelect])
                         StateMovement(atacante, atacanteSelect, defensor);
                         consola.children[0].textContent = MensajeDeStat(atacante, atacanteSelect, defensor.name, atacante.stataffect[atacanteSelect], atacante.stateffecttype[atacanteSelect])
 
@@ -119,7 +120,7 @@ export function combate(moves, consola) {
                 setTimeout(() => {
                     switch (defensor.movecategory[defensorSelect]) {
                         case "Physical":
-                            atkmensaje(defensor, consola, defensorSelect)
+                            atkmensaje(defensor.name, consola, def.movename[defensorSelect])
 
                             efectividad = CalcularEfectividad(defensor.movetype[defensorSelect], atacante.tipo1)
 
@@ -141,7 +142,7 @@ export function combate(moves, consola) {
                             }, 2000);
 
                         case "Special":
-                            atkmensaje(defensor, consola, defensorSelect)
+                            atkmensaje(defensor.name, consola, def.movename[defensorSelect])
 
                             efectividad = CalcularEfectividad(defensor.movetype[defensorSelect], atacante.tipo1)
 
@@ -163,6 +164,7 @@ export function combate(moves, consola) {
                             }, 2000);
 
                         case "State":
+                            atkmensaje(defensor.name, consola, def.movename[defensorSelect])
                             StateMovement(defensor, defensorSelect, atacante);
                             consola.children[0].textContent = MensajeDeStat(defensor, defensorSelect, atacante.name, defensor.stataffect[defensorSelect], defensor.stateffecttype[defensorSelect])
 
@@ -173,11 +175,5 @@ export function combate(moves, consola) {
             })
         }
     } while (atacante.battlestats.hp > 0 && defensor.battlestats.hp > 0)
-
-
-    // Selecciona PC
-
-
-    // } while {}
 
 }

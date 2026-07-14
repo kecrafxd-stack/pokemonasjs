@@ -1,3 +1,3 @@
-export function atkmensaje(atacante, consola, atacanteSelect){
-    consola.children[0].textContent = atacante.name + " ha utilizado " + atacante.movename[atacanteSelect];
+export function atkmensaje(atacante, consola, movimiento){
+    return consola.children[0].textContent = atacante + " ha utilizado " + movimiento;
 }
